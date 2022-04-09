@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CardGame_ProjectTwo
 {
@@ -13,7 +10,7 @@ namespace CardGame_ProjectTwo
         Hearts,
         Spades,
         // joker could be added for other game variations
-        // in Deck.cs, the constructor must be modified to
+        // in Deck.cs, Generate() must be modified to
         // accomodate the joker
     }
 

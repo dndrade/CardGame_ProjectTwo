@@ -1,27 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CardGame_ProjectTwo
 {
-    internal class Deck
+    public class Deck
     {
-        List<Card> mainDeck = new List<Card>();        // 52 cards
+        List<Card> deck = new List<Card>();        // 52 cards
+        int count = 0;
 
+
+        public List<Card> GetDeck() { return deck; }
+        public int Count { get { return count; } }
+        public int GetSize() { return count; }
 
         /*
                 Generates 52 cards for the deck
          */
         public void Generate()
         {
-            for (int i = 1; i < 52; i++)
+            for (int i = 0; i < 52; i++)
             {
                 Suit s = (Suit)Math.Floor(Convert.ToDecimal(i / 13));
-                int rank = i % 13;
+                int rank = i % 13 + 1;
                 Card c = new Card(rank, s);
-                mainDeck.Add(c);
+                deck.Add(c);
+                count++;
             }
         }
 
@@ -51,10 +54,48 @@ namespace CardGame_ProjectTwo
          */
         public void Print()
         {
-            foreach (Card c in mainDeck)
+            foreach (Card c in deck)
             {
                 Console.WriteLine(SettingCardsRankAndName(c));
             }
         }
+
+        /*
+                Shuffles deck
+         */
+        public void Shuffle()
+        {
+            Random rand = new Random();
+            for (int i = deck.Count - 1; i > 0; i--)
+            {
+                int randomIndex = rand.Next(i + 1);
+                Card tempCard = deck[i]; // temp that holds the last element
+                deck[i] = deck[randomIndex];
+                deck[randomIndex] = tempCard;
+            }
+        }
+
+        /*
+                Returns the top card of a deck
+         */
+        public Card TopCard()
+        {
+            if (deck.Count > 0)
+            {
+                Card TopCard = deck[deck.Count - 1];
+                deck.RemoveAt(deck.Count - 1);
+                count--;
+                return TopCard;
+            }
+            return null;
+        } // end of TopCard()
+
+        public void Add(Card c)
+        {
+            deck.Add(c);
+            count++;
+        }
+
     }
+
 }
