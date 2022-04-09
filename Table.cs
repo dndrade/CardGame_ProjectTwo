@@ -38,14 +38,18 @@ namespace CardGame_ProjectTwo
         /*
                 Validates the sum of a pair of cards
          */
-        protected static bool hasValidPair(List<Card> hand)
+        public static bool hasValidPair(List<Card> hand)
             {
                 for (int i = 0; i < hand.Count - 1; i++)
                 {
                     for (int j = i + 1; j < hand.Count; j++)
                     {
+                        Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank);
                         if (hand[i].rank + hand[j].rank == 11)
+                        {
                             return true;
+                        }
+                        
                     }
                 }
                 return false;
@@ -54,17 +58,21 @@ namespace CardGame_ProjectTwo
         /*
                 Returns true if 3 selected cards are JQK in whichever order
          */
-        protected static bool hasValidJQK(List<Card> hand)
+        public static bool hasValidJQK(List<Card> hand)
         {
             for (int i = 0; i < hand.Count - 1; i++)
             {
                 for (int j = i + 1; j < hand.Count; j++)
                 {
-                    for (int k = j + 1; k <= hand.Count; k++)
+                    for (int k = j + 1; k < hand.Count; k++)
                     {
-                        if ( (hand[i].rank == 11 || hand[i].rank == 12 || hand[i].rank == 13) && 
-                                (hand[j].rank == 11 || hand[j].rank == 12 || hand[j].rank == 13) &&
-                                    (hand[k].rank == 11 || hand[k].rank == 12 || hand[k].rank == 13) )
+                        Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank + " Card 3: " + hand[k].rank);
+                        if ( (hand[i].rank == 11 || hand[j].rank == 12 || hand[k].rank == 13) &&
+                            (hand[i].rank == 11 || hand[j].rank == 13 || hand[k].rank == 12) &&
+                            (hand[i].rank == 12 || hand[j].rank == 11 || hand[k].rank == 13) &&
+                            (hand[i].rank == 12 || hand[j].rank == 13 || hand[k].rank == 11) &&
+                            (hand[i].rank == 13 || hand[j].rank == 12 || hand[k].rank == 11) &&
+                            (hand[i].rank == 13 || hand[j].rank == 11 || hand[k].rank == 12) )
                         {
                             return true;
                         }
@@ -77,22 +85,24 @@ namespace CardGame_ProjectTwo
         /*
                 Deal 2 new cards to table
          */
-        protected void DealTwo()
+        public void DealTwo()
         {
             for (int i = 0; i < 2; i++)
             {
                 onTheTable.Add(MainDeck.TopCard());
+                Console.WriteLine("Dealing one card.");
             }
         }
 
         /*
                 Deal 3 new cards to table
          */
-        protected void DealThree()
+        public void DealThree()
         {
             for (int i = 0; i < 3; i++)
             {
                 onTheTable.Add(MainDeck.TopCard());
+                Console.WriteLine("Dealing one card.");
             }
         }
 
@@ -108,7 +118,7 @@ namespace CardGame_ProjectTwo
                 {
                     Console.WriteLine("Pair = 11");
                     // remove pair from player's hand
-                    for (int i = 0; i <= selection.Count; i++)
+                    for (int i = 0; i < selection.Count; i++)
                     {
                         selection.RemoveAt(i);
                     }
@@ -118,7 +128,7 @@ namespace CardGame_ProjectTwo
                 {
                     Console.WriteLine("Pair != 11, cards are back to table");
                     // place the pair back to the table
-                    for (int i = 0; i <= selection.Count; i++)
+                    for (int i = 0; i < selection.Count; i++)
                     {
                         onTheTable.Add(selection[i]);       // add card from hand to table
                         selection.RemoveAt(i);              // remove card from hand
@@ -148,7 +158,7 @@ namespace CardGame_ProjectTwo
                         selection.RemoveAt(i);
                     }
                 }
-            }
+            } //end elseif
         }
 
     }
