@@ -96,6 +96,19 @@ namespace CardGame_ProjectTwo
             count++;
         }
 
+        public Card getByIndex(int index)
+        {
+            for (int i = 0; i < deck.Count; i++)
+            {
+                Card card = deck[i];
+                if (i == index)
+                {
+                    return card;
+                }
+            }
+            return null;
+        }
+
     }
 
 }

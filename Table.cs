@@ -8,20 +8,19 @@ namespace CardGame_ProjectTwo
         protected Deck MainDeck = new Deck();        // generates new deck for games
         protected Deck onTheTable = new Deck();      // cards on display for the player
         //int Sum; // hasValidPair will receive it and replace the number 11 for other gamevariations
+        
 
-        //public Deck OnTheTable { get { return onTheTable; } }
 
         /*
                 Initial Game State
          */
         public void InitialState()
         {
-            MainDeck.Generate();
-            MainDeck.Shuffle();
-            DealNineCardsToTable();
-            onTheTable.Print();
+            MainDeck.Generate();                    // generates main deck
+            MainDeck.Shuffle();                     // shuffle deck
+            DealNineCardsToTable();                 // deal cards to table
+            onTheTable.Print();                     // display cards to player
         }
-
 
         /*
                 Deal 9 cards to the table
@@ -159,6 +158,37 @@ namespace CardGame_ProjectTwo
                     }
                 }
             } //end elseif
+        } // end GetPlayerCardSelection()
+
+        /*
+                Game logic
+         */
+        public void GamePlay(Player player)
+        {
+            // Load the initial game state
+            InitialState();
+
+            // main game loop
+            do
+            {
+                // get card selection from player
+                Console.WriteLine("Enter your selection by index (starts at 0): ");
+                var cardIndex = Console.ReadLine();                             // player will input up to 3 index values
+
+                // conversion from string to int while adding cards to player's hand
+                foreach (var index in cardIndex.Split(' '))
+                {
+                    var n = Convert.ToInt32(index);
+                    player.PlayerHand.Add(onTheTable.getByIndex(n));
+                }
+
+                // validade user selection
+                GetPlayerCardSelection(player.PlayerHand);
+
+            } while (MainDeck.Count > 0 && onTheTable.Count > 0);
+            
+
+
         }
 
     }

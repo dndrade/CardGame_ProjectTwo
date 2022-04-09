@@ -8,9 +8,25 @@ namespace CardGame_ProjectTwo
 {
     public class Player
     {
-        protected string name { get; set; }
+        protected string name;
         protected int score { get; set; }
 
         protected List<Card> playerHand = new List<Card>();
+
+        public Player(string n)
+        {
+            name = n;
+        }
+        public string Name 
+        {
+            get { return name; } // obj.Rank
+        }
+
+        public List<Card> PlayerHand
+        {
+            get { return playerHand; }
+        }
+
+
     }
 }
