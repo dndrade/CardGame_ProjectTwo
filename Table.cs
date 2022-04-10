@@ -115,7 +115,7 @@ namespace CardGame_ProjectTwo
         public void GetPlayerCardSelection(Deck selection, List<int> originalIndex)
         {
             originalIndex.Sort();               // sort indexes
-            originalIndex.Reverse();            // make it descending order
+            
             Console.WriteLine("\nAbout to validade cards.");
             // Pair selection
             if (selection.Count == 2)
@@ -123,7 +123,7 @@ namespace CardGame_ProjectTwo
                 if (hasValidPair(selection))
                 {
                     Console.WriteLine("Pair = 11");
-                    // remove pair from player's handint i = selection.Count -1; i >=0; i--
+                    // remove pair from player's hand
                     for (int i = selection.Count - 1; i >= 0; i--)
                     {
                         int oIndex = originalIndex[i];
@@ -131,8 +131,9 @@ namespace CardGame_ProjectTwo
                         // bellow is fine
                         selection.RemoveAt(i);
                         Console.WriteLine("Card removed from hand.");
+                        Console.WriteLine("[table.getPselection] Hand item count: " + selection.Count);
                     }
-                    DealTwo();                  // deal two new cards to table after sum = 11
+                    DealTwo();  // deal two new cards to table after sum = 11
                 }
                 else
                 {
@@ -140,7 +141,7 @@ namespace CardGame_ProjectTwo
                     // place the pair back to the table
                     for (int i = selection.Count - 1; i >= 0; i--)
                     {
-                        selection.RemoveAt(i);              // remove card from hand
+                        selection.RemoveAt(i);                  // remove card from hand
                     }
                 }
             }
@@ -190,7 +191,7 @@ namespace CardGame_ProjectTwo
                 List<int> storedIndex = new List<int>();
                 // get card selection from player
                 Console.WriteLine("Enter your selection by index (starts at 0): ");
-                var cardIndex = Console.ReadLine();                             // player will input up to 3 index values
+                var cardIndex = Console.ReadLine();                      // player will input up to 3 index values
 
                 // conversion from string to int while adding cards to player's hand
                 foreach (var index in cardIndex.Split(' '))
@@ -202,14 +203,24 @@ namespace CardGame_ProjectTwo
 
                 // validade user selection
                 GetPlayerCardSelection(player.PlayerHand, storedIndex);
+                
                 // empty original index list
                 for (int j = storedIndex.Count - 1; j >= 0; j--)
                 {
                     storedIndex.RemoveAt(j);
                 }
-                onTheTable.Print();
+                onTheTable.Print(); // display updated card list
+                Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);
 
-            } while (MainDeck.Count > 0 && onTheTable.Count > 0);
+            } while (onTheTable.Count > 0 && MainDeck.Count > 0);
+
+
+            /*
+             * What next?
+             *  when the end of game is reached, player scores 1 point
+             *  player might play again, and as it finishes the games, more points are scored.
+             *  scores are stored into a list/file that can be accessced whenever the program starts
+             */
             
 
 
