@@ -11,7 +11,7 @@ namespace CardGame_ProjectTwo
         protected string name;
         protected int score { get; set; }
 
-        protected List<Card> playerHand = new List<Card>();
+        protected Deck playerHand = new Deck();
 
         public Player(string n)
         {
@@ -19,10 +19,10 @@ namespace CardGame_ProjectTwo
         }
         public string Name 
         {
-            get { return name; } // obj.Rank
+            get { return name; }
         }
 
-        public List<Card> PlayerHand
+        public Deck PlayerHand
         {
             get { return playerHand; }
         }

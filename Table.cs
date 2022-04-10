@@ -7,9 +7,13 @@ namespace CardGame_ProjectTwo
     {
         protected Deck MainDeck = new Deck();        // generates new deck for games
         protected Deck onTheTable = new Deck();      // cards on display for the player
-        //int Sum; // hasValidPair will receive it and replace the number 11 for other gamevariations
-        
+                                                     //int Sum; // hasValidPair will receive it and replace the number 11 for other gamevariations
 
+
+
+
+        public Deck mainDeck { get { return MainDeck; } }
+        public Deck OnTheTable { get { return onTheTable; } }
 
         /*
                 Initial Game State
@@ -37,7 +41,7 @@ namespace CardGame_ProjectTwo
         /*
                 Validates the sum of a pair of cards
          */
-        public static bool hasValidPair(List<Card> hand)
+        public static bool hasValidPair(Deck hand)
             {
                 for (int i = 0; i < hand.Count - 1; i++)
                 {
@@ -57,7 +61,7 @@ namespace CardGame_ProjectTwo
         /*
                 Returns true if 3 selected cards are JQK in whichever order
          */
-        public static bool hasValidJQK(List<Card> hand)
+        public static bool hasValidJQK(Deck hand)
         {
             for (int i = 0; i < hand.Count - 1; i++)
             {
@@ -108,7 +112,7 @@ namespace CardGame_ProjectTwo
         /*
                 Gets selected cards and checks for removal
          */
-        public void GetPlayerCardSelection(List<Card> selection)
+        public void GetPlayerCardSelection(Deck selection)
         {
             // Pair selection
             if (selection.Count == 2)
@@ -184,6 +188,7 @@ namespace CardGame_ProjectTwo
 
                 // validade user selection
                 GetPlayerCardSelection(player.PlayerHand);
+                onTheTable.Print();
 
             } while (MainDeck.Count > 0 && onTheTable.Count > 0);
             

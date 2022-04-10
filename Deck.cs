@@ -90,12 +90,18 @@ namespace CardGame_ProjectTwo
             return null;
         } // end of TopCard()
 
+        /*
+                Adds a card to  deck
+         */
         public void Add(Card c)
         {
             deck.Add(c);
             count++;
         }
 
+        /*
+                Returns a card from a given index
+         */
         public Card getByIndex(int index)
         {
             for (int i = 0; i < deck.Count; i++)
@@ -108,6 +114,33 @@ namespace CardGame_ProjectTwo
             }
             return null;
         }
+
+        /*
+                Access a card from a deck by index
+         */
+        public Card this[int index]
+        {
+            get => (Card) deck[index];
+            set => deck.Insert(index, value); 
+        }
+
+        /*
+                Removes a card from deck using a given index
+         */
+        public void RemoveAt(int index)
+        {
+            for (int i = 0; i < deck.Count; i++)
+            {
+                Card card = deck[i];
+                if (i == index)
+                {
+                    deck.RemoveAt(index);
+                }
+            }
+        }
+
+
+
 
     }
 

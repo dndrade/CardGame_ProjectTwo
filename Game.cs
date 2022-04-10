@@ -11,19 +11,19 @@ namespace CardGame_ProjectTwo
 
         public void StartGame()
         {
-            
+            // Player Data
             Console.WriteLine("Enter your name: ");
             string name = Console.ReadLine();
             Player player = new Player(name);
+
+            // Start Game
+            GameTable.GamePlay(player);
+
         }
 
         /*
                 Application main menu
          */
-        public void Menu()
-        {
-
-        }
 
     }
 }
