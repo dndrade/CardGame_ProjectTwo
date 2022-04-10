@@ -54,9 +54,11 @@ namespace CardGame_ProjectTwo
          */
         public void Print()
         {
+            int i = -1;
             foreach (Card c in deck)
             {
-                Console.WriteLine(SettingCardsRankAndName(c));
+                i++;
+                Console.WriteLine(" " + i + " - " + SettingCardsRankAndName(c));
             }
         }
 

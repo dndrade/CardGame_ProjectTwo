@@ -47,7 +47,7 @@ namespace CardGame_ProjectTwo
                 {
                     for (int j = i + 1; j < hand.Count; j++)
                     {
-                        Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank);
+                        //Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank);
                         if (hand[i].rank + hand[j].rank == 11)
                         {
                             return true;
@@ -61,7 +61,7 @@ namespace CardGame_ProjectTwo
         /*
                 Returns true if 3 selected cards are JQK in whichever order
          */
-        public static bool hasValidJQK(Deck hand)
+        public static bool isJQK(Deck hand)
         {
             for (int i = 0; i < hand.Count - 1; i++)
             {
@@ -69,13 +69,13 @@ namespace CardGame_ProjectTwo
                 {
                     for (int k = j + 1; k < hand.Count; k++)
                     {
-                        Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank + " Card 3: " + hand[k].rank);
-                        if ( (hand[i].rank == 11 || hand[j].rank == 12 || hand[k].rank == 13) &&
-                            (hand[i].rank == 11 || hand[j].rank == 13 || hand[k].rank == 12) &&
-                            (hand[i].rank == 12 || hand[j].rank == 11 || hand[k].rank == 13) &&
-                            (hand[i].rank == 12 || hand[j].rank == 13 || hand[k].rank == 11) &&
-                            (hand[i].rank == 13 || hand[j].rank == 12 || hand[k].rank == 11) &&
-                            (hand[i].rank == 13 || hand[j].rank == 11 || hand[k].rank == 12) )
+                       // Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank + " Card 3: " + hand[k].rank);
+                        if ( (hand[i].rank == 11 && hand[j].rank == 12 && hand[k].rank == 13) ||
+                            (hand[i].rank == 11 && hand[j].rank == 13 && hand[k].rank == 12) ||
+                            (hand[i].rank == 12 && hand[j].rank == 11 && hand[k].rank == 13) ||
+                            (hand[i].rank == 12 && hand[j].rank == 13 && hand[k].rank == 11) ||
+                            (hand[i].rank == 13 && hand[j].rank == 12 && hand[k].rank == 11) ||
+                            (hand[i].rank == 13 && hand[j].rank == 11 && hand[k].rank == 12) )
                         {
                             return true;
                         }
@@ -86,7 +86,41 @@ namespace CardGame_ProjectTwo
         }
 
         /*
-                Deal 2 new cards to table
+                Returns true if JQK are on the table
+         */
+        public static bool hasJQK(Deck table)
+        {
+            bool J = false;
+            bool Q = false;
+            bool K = false;
+            
+            for (int i = table.Count - 1; i >= 0; i--)
+            {
+                if (table[i].rank == 11)
+                {
+                    J = true;
+                }
+                if (table[i].rank == 12)
+                {
+                    Q = true;
+                }
+                if (table[i].rank == 13)
+                {
+                    K = true;
+                }
+            }
+            if (J && Q && K)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        /*
+                Deals 2 new cards to table
          */
         public void DealTwo()
         {
@@ -98,7 +132,7 @@ namespace CardGame_ProjectTwo
         }
 
         /*
-                Deal 3 new cards to table
+                Deals 3 new cards to table
          */
         public void DealThree()
         {
@@ -148,7 +182,7 @@ namespace CardGame_ProjectTwo
             // JQK selection
             else if(selection.Count == 3)
             {
-                if (hasValidJQK(selection))
+                if (isJQK(selection))
                 {
                     Console.WriteLine("Is JQK!");
                     // remove pair from player's hand
@@ -186,7 +220,7 @@ namespace CardGame_ProjectTwo
             InitialState();
 
             // main game loop
-            do
+            while ( hasValidPair(onTheTable) || hasJQK(onTheTable) )
             {
                 List<int> storedIndex = new List<int>();
                 // get card selection from player
@@ -211,8 +245,20 @@ namespace CardGame_ProjectTwo
                 }
                 onTheTable.Print(); // display updated card list
                 Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);
+                Console.WriteLine("[table.maingameLoop] On the table item count: " + OnTheTable.Count);
+                Console.WriteLine("[table.maingameLoop] Main deck item count: " + MainDeck.Count);
+            }
 
-            } while (onTheTable.Count > 0 && MainDeck.Count > 0);
+            if (onTheTable.Count > 0 && MainDeck.Count > 0)
+            {
+                Console.WriteLine("You've lost the round.");
+            }
+            else
+            {
+                player.Score += 1;
+                Console.WriteLine("You've lost the round.");
+            }
+
 
 
             /*

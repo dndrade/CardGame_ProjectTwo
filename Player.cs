@@ -16,6 +16,7 @@ namespace CardGame_ProjectTwo
         public Player(string n)
         {
             name = n;
+            score = 0;
         }
         public string Name 
         {
@@ -27,6 +28,10 @@ namespace CardGame_ProjectTwo
             get { return playerHand; }
         }
 
-
+        public int Score
+        {
+            get { return score; }
+            set { score = value; }
+        }
     }
 }

@@ -9,6 +9,9 @@ namespace CardGame_ProjectTwo
         Table GameTable = new Table();                      // game table set up
 
 
+        /*
+                Starts the game
+         */
         public void StartGame()
         {
             // Player Data
