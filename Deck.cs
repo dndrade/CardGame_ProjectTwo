@@ -129,12 +129,13 @@ namespace CardGame_ProjectTwo
          */
         public void RemoveAt(int index)
         {
-            for (int i = 0; i < deck.Count; i++)
+            for (int i = deck.Count - 1; i >= 0; i--)
             {
                 Card card = deck[i];
                 if (i == index)
                 {
                     deck.RemoveAt(index);
+                    count--;
                 }
             }
         }

@@ -112,18 +112,25 @@ namespace CardGame_ProjectTwo
         /*
                 Gets selected cards and checks for removal
          */
-        public void GetPlayerCardSelection(Deck selection)
+        public void GetPlayerCardSelection(Deck selection, List<int> originalIndex)
         {
+            originalIndex.Sort();               // sort indexes
+            originalIndex.Reverse();            // make it descending order
+            Console.WriteLine("\nAbout to validade cards.");
             // Pair selection
             if (selection.Count == 2)
             {
                 if (hasValidPair(selection))
                 {
                     Console.WriteLine("Pair = 11");
-                    // remove pair from player's hand
-                    for (int i = 0; i < selection.Count; i++)
+                    // remove pair from player's handint i = selection.Count -1; i >=0; i--
+                    for (int i = selection.Count - 1; i >= 0; i--)
                     {
+                        int oIndex = originalIndex[i];
+                        onTheTable.RemoveAt(oIndex);            // remove from table using original index
+                        // bellow is fine
                         selection.RemoveAt(i);
+                        Console.WriteLine("Card removed from hand.");
                     }
                     DealTwo();                  // deal two new cards to table after sum = 11
                 }
@@ -131,9 +138,8 @@ namespace CardGame_ProjectTwo
                 {
                     Console.WriteLine("Pair != 11, cards are back to table");
                     // place the pair back to the table
-                    for (int i = 0; i < selection.Count; i++)
+                    for (int i = selection.Count - 1; i >= 0; i--)
                     {
-                        onTheTable.Add(selection[i]);       // add card from hand to table
                         selection.RemoveAt(i);              // remove card from hand
                     }
                 }
@@ -145,8 +151,10 @@ namespace CardGame_ProjectTwo
                 {
                     Console.WriteLine("Is JQK!");
                     // remove pair from player's hand
-                    for (int i = 0; i <= selection.Count; i++)
+                    for (int i = selection.Count - 1; i >= 0; i--)
                     {
+                        int oIndex = originalIndex[i];
+                        onTheTable.RemoveAt(oIndex);
                         selection.RemoveAt(i);
                     }
                     DealThree();
@@ -155,13 +163,17 @@ namespace CardGame_ProjectTwo
                 {
                     Console.WriteLine("Is not JQK. Cards are back to table");
                     // place the pair back to the table
-                    for (int i = 0; i <= selection.Count; i++)
+                    for (int i = selection.Count - 1; i >= 0; i--)
                     {
-                        onTheTable.Add(selection[i]);
                         selection.RemoveAt(i);
                     }
                 }
             } //end elseif
+            else
+            {
+                Console.WriteLine("\nDid not fall into any case of validation.");
+                Console.WriteLine("Hand item count: " + selection.Count);
+            }
         } // end GetPlayerCardSelection()
 
         /*
@@ -175,6 +187,7 @@ namespace CardGame_ProjectTwo
             // main game loop
             do
             {
+                List<int> storedIndex = new List<int>();
                 // get card selection from player
                 Console.WriteLine("Enter your selection by index (starts at 0): ");
                 var cardIndex = Console.ReadLine();                             // player will input up to 3 index values
@@ -184,10 +197,16 @@ namespace CardGame_ProjectTwo
                 {
                     var n = Convert.ToInt32(index);
                     player.PlayerHand.Add(onTheTable.getByIndex(n));
+                    storedIndex.Add(n);                                 // save original indexes for later deletion
                 }
 
                 // validade user selection
-                GetPlayerCardSelection(player.PlayerHand);
+                GetPlayerCardSelection(player.PlayerHand, storedIndex);
+                // empty original index list
+                for (int j = storedIndex.Count - 1; j >= 0; j--)
+                {
+                    storedIndex.RemoveAt(j);
+                }
                 onTheTable.Print();
 
             } while (MainDeck.Count > 0 && onTheTable.Count > 0);
