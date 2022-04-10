@@ -213,17 +213,7 @@ namespace CardGame_ProjectTwo
                 Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);
 
             } while (onTheTable.Count > 0 && MainDeck.Count > 0);
-
-
-            /*
-             * What next?
-             *  when the end of game is reached, player scores 1 point
-             *  player might play again, and as it finishes the games, more points are scored.
-             *  scores are stored into a list/file that can be accessced whenever the program starts
-             */
-            
-
-
+         
         }
 
     }
