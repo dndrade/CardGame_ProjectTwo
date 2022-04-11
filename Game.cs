@@ -76,5 +76,70 @@ namespace CardGame_ProjectTwo
                 }
             }             
         }
+
+        public void MenuDisplay()
+        {
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine("-                             ELEVENS                         -");
+            Console.WriteLine("----------------------------------------------------------------\n");
+            Console.WriteLine("1 - How to Play");
+            Console.WriteLine("2 - New Game");
+            Console.WriteLine("3 - Exit");
+
+        }
+        public void HowToPlay()
+        {
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine("-                             ELEVENS                         -");
+            Console.WriteLine("----------------------------------------------------------------\n");
+            Console.WriteLine("How to Play:");
+            Console.WriteLine("1. 9 cards will be displayed, pick a pair by typing its index ");
+            Console.WriteLine("   separated by a space. eg: 2 3");
+            Console.WriteLine("2. The sum of the pair must be equal to 11. ");
+            Console.WriteLine("3. You may also select a Jack, Queen and King and discard them. ");
+            Console.WriteLine("   Enter their index separated by space as well. eg: 5 0 7 ");
+            Console.WriteLine("4. You win the game when the main deck is empty and all card have been");
+            Console.WriteLine("   removed from the table.");
+            char back;
+            do
+            {
+                Console.WriteLine("Enter b to get back to main menu: ");
+                back = Console.ReadLine()[0];
+            } while (back != 'b');
+            
+            Console.Clear();
+            MainMenu();
+        
+        }
+
+        public void MainMenu()
+        {
+            int choice = 0;
+            MenuDisplay();
+
+            while(choice != 3)
+            {
+                Console.WriteLine("Enter you choice (1 to 3): ");
+                string input = Console.ReadLine();
+                choice = Int32.Parse(input);
+                
+                if (choice == 1)
+                {
+                    Console.Clear();
+                    HowToPlay();
+                }
+                else if (choice == 2)
+                {
+                    Console.Clear();
+                    StartNewGame();
+                }
+                else if (choice == 3)
+                {
+                    Console.WriteLine("Closing application.");
+                    Environment.Exit(0);
+                }
+            }
+            
+        }
     }
 }

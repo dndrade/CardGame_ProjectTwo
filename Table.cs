@@ -57,7 +57,7 @@ namespace CardGame_ProjectTwo
                 {
                     for (int j = i + 1; j < hand.Count; j++)
                     {
-                        //Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank);
+                        //Console.WriteLine("Card 1: " + hand[i].rank + " Card 2: " + hand[j].rank);    //debug
                         if (hand[i].rank + hand[j].rank == 11)
                         {
                             return true;

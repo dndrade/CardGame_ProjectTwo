@@ -16,13 +16,12 @@ namespace CardGame_ProjectTwo
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.StartNewGame();
+            game.MainMenu();
 
            // Console.WriteLine("\nIm back at Program class.");  //debug
 
 
-            // TBD: main menu
-            //      leaderboard
+            // TBD: leaderboard
         }
     }
 }
