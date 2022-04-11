@@ -66,7 +66,7 @@ namespace CardGame_ProjectTwo
             foreach (Card c in deck)
             {
                 i++;
-                Console.WriteLine(" " + i + " - " + SettingCardsRankAndName(c));
+                Console.WriteLine("  " + i + " - " + SettingCardsRankAndName(c));
             }
         }
 
@@ -149,10 +149,5 @@ namespace CardGame_ProjectTwo
                 }
             }
         }
-
-
-
-
     }
-
 }

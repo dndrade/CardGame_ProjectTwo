@@ -145,7 +145,6 @@ namespace CardGame_ProjectTwo
                     Environment.Exit(0);
                 }
             }
-            
         }
     }
 }

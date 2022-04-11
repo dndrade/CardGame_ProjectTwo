@@ -28,6 +28,10 @@ namespace CardGame_ProjectTwo
          */
         public void InitialState()
         {
+            // clear console
+            Console.Clear();
+            // load header
+            gameControl.ElevensTitle();
             MainDeck.Generate();                    // generates main deck
             MainDeck.Shuffle();                     // shuffle deck
             DealNineCardsToTable();                 // deal cards to table
@@ -60,7 +64,6 @@ namespace CardGame_ProjectTwo
                         {
                             return true;
                         }
-                        
                     }
                 }
                 return false;
@@ -231,10 +234,6 @@ namespace CardGame_ProjectTwo
          */
         public void GamePlay(Player player)
         {
-            // clear console
-            Console.Clear();
-            // load header
-            gameControl.ElevensTitle();
             // Load the initial game state
             InitialState();
 
@@ -256,16 +255,25 @@ namespace CardGame_ProjectTwo
 
                 // validade user selection
                 GetPlayerCardSelection(player.PlayerHand, storedIndex);
-                
+
+
                 // empty original index list
                 for (int j = storedIndex.Count - 1; j >= 0; j--)
                 {
                     storedIndex.RemoveAt(j);
                 }
-                onTheTable.Print(); // display updated card list
-                Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);  // debug
-                Console.WriteLine("[table.maingameLoop] On the table item count: " + OnTheTable.Count); // debug
-                Console.WriteLine("[table.maingameLoop] Main deck item count: " + MainDeck.Count);      // debug
+
+                // clear console
+                Console.Clear();
+                // load header
+                gameControl.ElevensTitle();
+
+                // display updated card list
+                onTheTable.Print();
+
+                //Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);  // debug
+                //Console.WriteLine("[table.maingameLoop] On the table item count: " + OnTheTable.Count); // debug
+                //Console.WriteLine("[table.maingameLoop] Main deck item count: " + MainDeck.Count);      // debug
             }
 
             if (onTheTable.Count > 0 && MainDeck.Count > 0)
@@ -282,6 +290,5 @@ namespace CardGame_ProjectTwo
             // call game options (what to do next)
             gameControl.EndGameOptions(player);
         }
-
     }
 }
