@@ -35,6 +35,8 @@ namespace CardGame_ProjectTwo
             MainDeck.Generate();                    // generates main deck
             MainDeck.Shuffle();                     // shuffle deck
             DealNineCardsToTable();                 // deal cards to table
+            //display main deck card count @ top right upper corner of screen
+            Console.WriteLine($"                                                       Main deck: {MainDeck.Count} cards");
             onTheTable.Print();                     // display cards to player
         }
 
@@ -268,12 +270,14 @@ namespace CardGame_ProjectTwo
                 // load header
                 gameControl.ElevensTitle();
 
+                //display main deck card count @ top right upper corner of screen
+                Console.WriteLine($"                                                       Main deck: {MainDeck.Count} cards");
                 // display updated card list
                 onTheTable.Print();
 
                 //Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);  // debug
                 //Console.WriteLine("[table.maingameLoop] On the table item count: " + OnTheTable.Count); // debug
-                //Console.WriteLine("[table.maingameLoop] Main deck item count: " + MainDeck.Count);      // debug
+                
             }
 
             if (onTheTable.Count > 0 && MainDeck.Count > 0)
