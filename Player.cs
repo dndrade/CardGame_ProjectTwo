@@ -1,8 +1,13 @@
-﻿using System;
+﻿/*
+    CSC 350H Spring 2022
+    Program: Card Game Elevens
+    Student: Thamires Andrade
+    Professor: Hao Tang
+    Description:
+*/
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CardGame_ProjectTwo
 {

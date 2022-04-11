@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+    CSC 350H Spring 2022
+    Program: Card Game Elevens
+    Student: Thamires Andrade
+    Professor: Hao Tang
+    Description:
+*/
+
+
+using System;
 using System.Collections.Generic;
 
 namespace CardGame_ProjectTwo
@@ -7,7 +16,8 @@ namespace CardGame_ProjectTwo
     {
         protected Deck MainDeck = new Deck();        // generates new deck for games
         protected Deck onTheTable = new Deck();      // cards on display for the player
-                                                     //int Sum; // hasValidPair will receive it and replace the number 11 for other gamevariations
+        //int Sum; // hasValidPair will receive it and replace the number 11 for other gamevariations
+        protected Game gameControl = new Game();
 
 
 
@@ -256,20 +266,12 @@ namespace CardGame_ProjectTwo
             else
             {
                 player.Score += 1;
-                Console.WriteLine("You've lost the round.");
+                Console.WriteLine("You've won!");
             }
 
-
-
-            /*
-             * What next?
-             *  when the end of game is reached, player scores 1 point
-             *  player might play again, and as it finishes the games, more points are scored.
-             *  scores are stored into a list/file that can be accessced whenever the program starts
-             */
-            
-
-
+            Console.WriteLine("I'm still @ table, about to call game options.");
+            // call game options (what to do next)
+            gameControl.EndGameOptions(player);
         }
 
     }
