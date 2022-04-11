@@ -16,10 +16,8 @@ namespace CardGame_ProjectTwo
     {
         protected Deck MainDeck = new Deck();        // generates new deck for games
         protected Deck onTheTable = new Deck();      // cards on display for the player
-        //int Sum; // hasValidPair will receive it and replace the number 11 for other gamevariations
+        //int Sum; // hasValidPair will receive it and replace the number 11 for other game variations
         protected Game gameControl = new Game();
-
-
 
 
         public Deck mainDeck { get { return MainDeck; } }
@@ -127,18 +125,20 @@ namespace CardGame_ProjectTwo
             return false;
         }
 
-
-
         /*
                 Deals 2 new cards to table
          */
         public void DealTwo()
         {
+            Console.WriteLine("\nDealing cards to table...\n");        
+            System.Threading.Thread.Sleep(1000);
+
             for (int i = 0; i < 2; i++)
             {
                 onTheTable.Add(MainDeck.TopCard());
-                Console.WriteLine("Dealing one card.");
+                //Console.WriteLine("Dealing one card.");             // debug
             }
+            
         }
 
         /*
@@ -146,10 +146,13 @@ namespace CardGame_ProjectTwo
          */
         public void DealThree()
         {
+            Console.WriteLine("\nDealing cards to table...\n");
+            System.Threading.Thread.Sleep(1000);
+
             for (int i = 0; i < 3; i++)
             {
                 onTheTable.Add(MainDeck.TopCard());
-                Console.WriteLine("Dealing one card.");
+                //Console.WriteLine("Dealing one card.");             // debug
             }
         }
 
@@ -160,7 +163,7 @@ namespace CardGame_ProjectTwo
         {
             originalIndex.Sort();               // sort indexes
             
-            Console.WriteLine("\nAbout to validade cards.");
+            //Console.WriteLine("\nAbout to validade cards.");                        // debug
             // Pair selection
             if (selection.Count == 2)
             {
@@ -172,10 +175,10 @@ namespace CardGame_ProjectTwo
                     {
                         int oIndex = originalIndex[i];
                         onTheTable.RemoveAt(oIndex);            // remove from table using original index
-                        // bellow is fine
                         selection.RemoveAt(i);
-                        Console.WriteLine("Card removed from hand.");
-                        Console.WriteLine("[table.getPselection] Hand item count: " + selection.Count);
+
+                        //Console.WriteLine("Card removed from hand.");                                    // debug
+                        //Console.WriteLine("[table.getPselection] Hand item count: " + selection.Count); // debug
                     }
                     DealTwo();  // deal two new cards to table after sum = 11
                 }
@@ -214,6 +217,8 @@ namespace CardGame_ProjectTwo
                     }
                 }
             } //end elseif
+
+            // debug
             else
             {
                 Console.WriteLine("\nDid not fall into any case of validation.");
@@ -226,6 +231,10 @@ namespace CardGame_ProjectTwo
          */
         public void GamePlay(Player player)
         {
+            // clear console
+            Console.Clear();
+            // load header
+            gameControl.ElevensTitle();
             // Load the initial game state
             InitialState();
 
@@ -254,9 +263,9 @@ namespace CardGame_ProjectTwo
                     storedIndex.RemoveAt(j);
                 }
                 onTheTable.Print(); // display updated card list
-                Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);
-                Console.WriteLine("[table.maingameLoop] On the table item count: " + OnTheTable.Count);
-                Console.WriteLine("[table.maingameLoop] Main deck item count: " + MainDeck.Count);
+                Console.WriteLine("[table.maingameLoop] Hand item count: " + player.PlayerHand.Count);  // debug
+                Console.WriteLine("[table.maingameLoop] On the table item count: " + OnTheTable.Count); // debug
+                Console.WriteLine("[table.maingameLoop] Main deck item count: " + MainDeck.Count);      // debug
             }
 
             if (onTheTable.Count > 0 && MainDeck.Count > 0)
@@ -269,7 +278,7 @@ namespace CardGame_ProjectTwo
                 Console.WriteLine("You've won!");
             }
 
-            Console.WriteLine("I'm still @ table, about to call game options.");
+            //Console.WriteLine("I'm still @ table, about to call game options.");        // debug
             // call game options (what to do next)
             gameControl.EndGameOptions(player);
         }

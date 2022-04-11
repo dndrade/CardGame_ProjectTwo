@@ -20,6 +20,8 @@ namespace CardGame_ProjectTwo
          */
         public Player NewPlayer()
         {
+            // header
+            ElevensTitle();
             // Player Data
             Console.WriteLine("Enter your name: ");
             string name = Console.ReadLine();
@@ -55,11 +57,11 @@ namespace CardGame_ProjectTwo
         public void EndGameOptions(Player activePlayer)
         {
             Console.WriteLine("\nIm inside end of game options.");
-            char choice = ' ';
-            while (choice != 'n' || choice != 'y' )
+            bool option = true;
+            while ( option )
             {
                 Console.WriteLine($"{activePlayer.Name}, would you like to play again? (y/n)");
-                choice = Console.ReadLine()[0];
+                char choice = Console.ReadLine()[0];
 
                 // yes
                 if (choice == 'y' || choice == 'y')
@@ -70,8 +72,8 @@ namespace CardGame_ProjectTwo
                 // no
                 else if (choice == 'n' || choice == 'N')
                 {
+                    option = false;
                     // exit app
-                    Console.WriteLine("Thanks for playing!");
                     Environment.Exit(0);
                 }
             }             
@@ -79,9 +81,7 @@ namespace CardGame_ProjectTwo
 
         public void MenuDisplay()
         {
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine("-                             ELEVENS                         -");
-            Console.WriteLine("----------------------------------------------------------------\n");
+            ElevensTitle();
             Console.WriteLine("1 - How to Play");
             Console.WriteLine("2 - New Game");
             Console.WriteLine("3 - Exit");
@@ -89,9 +89,7 @@ namespace CardGame_ProjectTwo
         }
         public void HowToPlay()
         {
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine("-                             ELEVENS                         -");
-            Console.WriteLine("----------------------------------------------------------------\n");
+            ElevensTitle();
             Console.WriteLine("How to Play:");
             Console.WriteLine("1. 9 cards will be displayed, pick a pair by typing its index ");
             Console.WriteLine("   separated by a space. eg: 2 3");
@@ -112,6 +110,16 @@ namespace CardGame_ProjectTwo
         
         }
 
+        public void ElevensTitle()
+        {
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine("-                                   ELEVENS                               -");
+            Console.WriteLine("---------------------------------------------------------------------------\n");
+        }
+
+        /*
+                Game's main menu
+         */
         public void MainMenu()
         {
             int choice = 0;
@@ -120,8 +128,7 @@ namespace CardGame_ProjectTwo
             while(choice != 3)
             {
                 Console.WriteLine("Enter you choice (1 to 3): ");
-                string input = Console.ReadLine();
-                choice = Int32.Parse(input);
+                choice = Int32.Parse(Console.ReadLine());
                 
                 if (choice == 1)
                 {
@@ -135,7 +142,6 @@ namespace CardGame_ProjectTwo
                 }
                 else if (choice == 3)
                 {
-                    Console.WriteLine("Closing application.");
                     Environment.Exit(0);
                 }
             }
