@@ -3,7 +3,7 @@
     Program: Card Game Elevens
     Student: Thamires Andrade
     Professor: Hao Tang
-    Description:
+    Description: can generate and manage a deck of 52 playing cards.
 */
 
 using System;

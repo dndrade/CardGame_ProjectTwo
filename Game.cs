@@ -3,7 +3,8 @@
     Program: Card Game Elevens
     Student: Thamires Andrade
     Professor: Hao Tang
-    Description:
+    Description: Game manages the application. A player can learn how to play,
+                start a new game or exit the application.
 */
 
 using System;
@@ -56,7 +57,6 @@ namespace CardGame_ProjectTwo
          */
         public void EndGameOptions(Player activePlayer)
         {
-            Console.WriteLine("\nIm inside end of game options.");
             bool option = true;
             while ( option )
             {
@@ -96,7 +96,7 @@ namespace CardGame_ProjectTwo
             Console.WriteLine("2. The sum of the pair must be equal to 11. ");
             Console.WriteLine("3. You may also select a Jack, Queen and King and discard them. ");
             Console.WriteLine("   Enter their index separated by space as well. eg: 5 0 7 ");
-            Console.WriteLine("4. You win the game when the main deck is empty and all card have been");
+            Console.WriteLine("4. You win the game when the main deck is empty and all cards have been");
             Console.WriteLine("   removed from the table.");
             char back;
             do

@@ -3,7 +3,7 @@
     Program: Card Game Elevens
     Student: Thamires Andrade
     Professor: Hao Tang
-    Description:
+    Description: generic player class that holds player's name, score and a card list(deck).
 */
 
 using System;

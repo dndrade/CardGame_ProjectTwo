@@ -3,7 +3,7 @@
     Program: Card Game Elevens
     Student: Thamires Andrade
     Professor: Hao Tang
-    Description:
+    Description: generic card class with a suit name and rank value.
 */
 
 using System;

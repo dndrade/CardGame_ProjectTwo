@@ -3,7 +3,7 @@
     Program: Card Game Elevens
     Student: Thamires Andrade
     Professor: Hao Tang
-    Description:
+    Description: Table.cs contains the game logic and peforms deck and card operations.
 */
 
 
@@ -250,9 +250,13 @@ namespace CardGame_ProjectTwo
                 // conversion from string to int while adding cards to player's hand
                 foreach (var index in cardIndex.Split(' '))
                 {
-                    var n = Convert.ToInt32(index);
-                    player.PlayerHand.Add(onTheTable.getByIndex(n));
-                    storedIndex.Add(n);                                 // save original indexes for later deletion
+                    if (index != "")
+                    {
+                        var n = Convert.ToInt32(index);
+                        player.PlayerHand.Add(onTheTable.getByIndex(n));
+                        storedIndex.Add(n);                                 // save original indexes for later deletion
+                    }
+                    
                 }
 
                 // validade user selection
@@ -283,6 +287,7 @@ namespace CardGame_ProjectTwo
             if (onTheTable.Count > 0 && MainDeck.Count > 0)
             {
                 Console.WriteLine("You've lost the round.");
+                Console.WriteLine("There are no remaining valid pairs or a JQK combo on the table.");
             }
             else
             {
