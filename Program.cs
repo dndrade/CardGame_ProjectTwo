@@ -3,7 +3,8 @@
     Program: Card Game Elevens
     Student: Thamires Andrade
     Professor: Hao Tang
-    Description:
+    Description: starts the application by calling the game's main menu
+    // TBD: leaderboard
 */
 
 using System;
@@ -17,11 +18,6 @@ namespace CardGame_ProjectTwo
         {
             Game game = new Game();
             game.MainMenu();
-
-           // Console.WriteLine("\nIm back at Program class.");  //debug
-
-
-            // TBD: leaderboard
         }
     }
 }
